@@ -15,6 +15,13 @@ import {mapStores} from 'pinia'
 import userStore from '../stores/user.js'
 export default {
 
+    data () {
+        return {
+            username:null,
+            password:null,
+        }
+    },
+
     computed:{
     ...mapStores(userStore)
 },
