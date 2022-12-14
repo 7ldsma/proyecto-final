@@ -1,4 +1,5 @@
 <template>
+    <app-header :user="user"/>
     Dashboard
 
     <form @submit.prevent="Login">
@@ -13,8 +14,12 @@
 <script>
 import {mapStores} from 'pinia'
 import userStore from '../stores/user.js'
-export default {
+import AppHeader from "../components/AppHeader.vue"
 
+export default {
+    components : {
+        AppHeader
+    },
     data () {
         return {
             username:null,
