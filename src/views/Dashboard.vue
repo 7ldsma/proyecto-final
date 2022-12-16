@@ -16,13 +16,13 @@
 
         <div class="ongoing">
             <ul>
-            <li v-for="(item,index) in ongoingList">{{item}} <button @click="addtoDone(index)"> Done </button></li>
+            <li v-for="(item,index) in ongoingList">{{item}} <button @click="addtoDone(index)"> Done </button> <button @click="remove2(index)">REMOVE</button></li>
         </ul>
         </div>
         
         <div class="done">
           <ul>
-            <li v-for="item in doneList"> {{item}} </li>
+            <li v-for="item in doneList"> {{item}}  <button @click="remove3(index)">REMOVE</button></li>
           </ul>
         </div>
     </div>  
@@ -60,6 +60,14 @@ export default {
         },
         remove(index){
             this.items.splice(index,1);
+            return items
+        },
+        remove2(index){
+            this.ongoingList.splice(index,1);
+            return items
+        },
+        remove3(index){
+            this.doneList.splice(index,1);
             return items
         },
         addtoOngoing(index){
