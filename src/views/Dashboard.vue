@@ -1,6 +1,6 @@
 <template>
 
-    Dashboard  
+      
     <div>
         <div>
             To do
