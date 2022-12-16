@@ -1,7 +1,7 @@
 <template>
 
   <div class="p-8">
-    <app-header :user="user"/>
+    <app-header/>
   </div>
 
   <RouterView/>
@@ -15,6 +15,15 @@ export default{
   components : {
         AppHeader
     },
+    
+  // methods: {
+
+  //   logout () {
+  //     localStorage.clear();
+  //     this.$router.push('/')
+  //   }
+
+  // }
 }
 
 </script>
