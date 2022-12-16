@@ -9,6 +9,14 @@ export default defineStore("tasks", {
             tasks: null,
         };
     },
+
+    getters: {
+        pendingTasks() {},
+        ongoingTasks() {},
+        doneTasks() {},
+    },
+
+
     actions: {
         async fetchTasks() {
             const { data: tasks } = await supabase
@@ -17,8 +25,9 @@ export default defineStore("tasks", {
                 .order("id", { ascending: false });
             this.tasks = tasks;
         },
-        async addtask(){
-            
-        }
+
+        async createTasks(task) {},
+        async updateTasks(task) {},
+        async deleteTasks(task) {},
     },
 });

@@ -1,4 +1,5 @@
-import { createApp } from 'vue'
+import { createApp, markRaw } from 'vue'
+import piniaPersist from 'pinia-plugin-persist'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
@@ -6,9 +7,10 @@ import router from './router'
 
 import './assets/main.css'
 
-const app = createApp(App)
+const pinia = createPinia()
+    .use(piniaPersist)
+    .use(({ store }) => {
+        store.$router = markRaw(router);
+    });
 
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+createApp(App).use(pinia).use(router).mount("#app");
