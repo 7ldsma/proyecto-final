@@ -5,7 +5,7 @@
         <div class="addlist">
             <h2>Add item</h2>
             <input type="text" v-model="elements" placeholder="Add new task" width="50px">
-            <button @click="addtolist()" class="addbutton"> CLICK</button>
+            <button @click="addtolist()" class="addbutton"> CLICK Me</button>
      
         <ul>
             <li v-for="(item, index) in items">{{item}}<button @click="remove(index)">REMOVE</button> <button @click="addtoOngoing(index)"> ONgoing </button>
