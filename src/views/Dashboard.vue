@@ -3,13 +3,13 @@
       
     <div>
         <div>
-            To do
+            
         </div>
         <div>
-            Ongoing
+            
         </div>
         <div>
-            Done
+            
         </div>
     </div>  
 
@@ -18,9 +18,14 @@
 <script>
 import {mapStores} from 'pinia'
 import userStore from '../stores/user.js'
+import NewTask from '../components/NewTask.vue'
 
 
 export default {
+
+    components : {
+        NewTask
+    },
 
     data () {
         return {
