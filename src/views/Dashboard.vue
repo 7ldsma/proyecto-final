@@ -1,5 +1,6 @@
 <template>
 
+
     <div class="main">
 
         <div class="addlist">
@@ -24,6 +25,7 @@
           <ul>
             <li v-for="item in doneList"> {{item}}  <button @click="remove3(index)">REMOVE</button></li>
           </ul>
+
         </div>
     </div>  
 
@@ -32,8 +34,10 @@
 <script scoped>
 import {mapStores} from 'pinia'
 import userStore from '../stores/user.js'
+
 import{supabase} from "../supabase.js"
 export default {
+
     data () {
         return {
             username:null,
