@@ -1,32 +1,51 @@
 <template>
 
-<div>
     <div>
+        <div class="in">
             <input type="text" v-model="title" placeholder="Add new task" width="50px">
             <button @click="addtolist()" class="addbutton"> Add task</button>
         </div>
-        <div class="main">
-    
-<div v-for=" (item, index ) in tasksStore.tasks">
-    <div v-if="tasksStore.tasks[index].status==1" class="todo">
-        {{ item.title }} <button @click="changestate(item.id)"> next</button>
-        <button @click="remove(item.id)">Remove</button>
-    </div>
-    <div v-if="tasksStore.tasks[index].status==2" class="process">
-        {{ item.title }} <button @click="changestate1(item.id)"> next</button>  <button @click="changestate2(item.id)">go back</button>
-        <button @click="remove(item.id)">Remove</button>
-    </div>
-    <div v-if="tasksStore.tasks[index].status==3" class="done">
-        {{ item.title }} <button @click="changestate3(item.id)">go back</button>
-        <button @click="remove(item.id)">Remove</button>
-    </div>
-    
+        <div>
+
+            <div class="all">
+               
+                <div class="bg-stone-300">
+                    <h2> To do :)</h2>
+                    <div v-for=" (item, index ) in tasksStore.tasks" class="todo">
+                        <div v-if="tasksStore.tasks[index].status == 1">
+                            {{ item.title }} <button @click="changestate(item.id)"> next</button>
+                            <button @click="remove(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="bg-stone-300  mt-3">
+                    <h2>On going...</h2>
+                    <div v-for=" (item, index ) in tasksStore.tasks" class="process">
+                        <div v-if="tasksStore.tasks[index].status == 2">
+                            {{ item.title }} <button @click="changestate1(item.id)"> next</button> <button
+                                @click="changestate2(item.id)">go back</button>
+                            <button @click="remove(item.id)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-stone-300  mt-3">
+                    <h2>Done!</h2>
+                    <div v-for=" (item, index ) in tasksStore.tasks" class="done">
+                        <div v-if="tasksStore.tasks[index].status == 3">
+                            {{ item.title }} <button @click="changestate3(item.id)">go back</button>
+                            <button @click="remove(item.id)">Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
-</div>
 
-</div>
-    
 
 </template>
 
@@ -40,6 +59,9 @@ export default {
         return {
 
             title: "",
+            todo: true,
+            process: false,
+            done: false,
         }
     },
 
@@ -55,6 +77,8 @@ export default {
         },
         changestate(taskid) {
             this.tasksStore.updateTasks(2, taskid)
+            this.todo = false
+            this.process = true
         },
         changestate1(taskid) {
             this.tasksStore.updateTasks(3, taskid)
@@ -84,32 +108,49 @@ h2 {
 }
 
 button {
-    width: 100px;
+    width: 70px;
     height: 40px;
     background-color: blue;
 }
 
-.main {
+
+.all {
     display: flex;
-    flex-direction: row;
-    margin: auto;
+    flex-direction: column;
     justify-content: space-around;
 }
 
-.addlist {
+.todo {
+    display: flex;
     flex-direction: column;
+    justify-items: flex-start;
+    padding-bottom: 5%;
+
+
 }
-.todo{
-    background-color: brown;
-}
+
 .process {
-    flex-direction: column;
-    background-color: aqua;
+    display: flex;
+    justify-items: center;
+    padding-bottom: 5%;
+
 
 }
 
 .done {
-    flex-direction: column;
-    background-color: green;
+    display: flex;
+    justify-items: end;
+    padding-bottom: 5%;
+
+
+}
+
+.in {
+    padding-bottom: 10%;
+}
+@media (min-width:1024px){
+.all{
+    flex-direction: row;
+}
 }
 </style>
