@@ -1,25 +1,32 @@
 <template>
 
-
-    <div class="main">
-
-        <div class="addlist">
-            <div v-for=" (item ,index ) in tasksStore.tasks">
-                {{item.title}} <button @click="changestate(item.id)"> next</button>
-                <button @click="remove(item.id)">Remove</button>
-            </div>
+<div>
+    <div>
             <input type="text" v-model="title" placeholder="Add new task" width="50px">
-            <button @click="addtolist()" class="addbutton"> CLICK Me</button>
-       
+            <button @click="addtolist()" class="addbutton"> Add task</button>
         </div>
-
-       <div>
-
-       </div>
-       
-
-       
+        <div class="main">
+    
+<div v-for=" (item, index ) in tasksStore.tasks">
+    <div v-if="tasksStore.tasks[index].status==1" class="todo">
+        {{ item.title }} <button @click="changestate(item.id)"> next</button>
+        <button @click="remove(item.id)">Remove</button>
     </div>
+    <div v-if="tasksStore.tasks[index].status==2" class="process">
+        {{ item.title }} <button @click="changestate1(item.id)"> next</button>  <button @click="changestate2(item.id)">go back</button>
+        <button @click="remove(item.id)">Remove</button>
+    </div>
+    <div v-if="tasksStore.tasks[index].status==3" class="done">
+        {{ item.title }} <button @click="changestate3(item.id)">go back</button>
+        <button @click="remove(item.id)">Remove</button>
+    </div>
+    
+    </div>
+
+</div>
+
+</div>
+    
 
 </template>
 
@@ -33,7 +40,6 @@ export default {
         return {
 
             title: "",
-            
         }
     },
 
@@ -44,23 +50,30 @@ export default {
 
     methods: {
         addtolist() {
-          this.tasksStore.createTasks(this.userStore.user.id, this.title, 1)
-          this.title=""
+            this.tasksStore.createTasks(this.userStore.user.id, this.title, 1)
+            this.title = ""
         },
-        changestate(taskid){
-            this.tasksStore.updateTasks(2,taskid)
-            
+        changestate(taskid) {
+            this.tasksStore.updateTasks(2, taskid)
         },
-        remove( task_id){
+        changestate1(taskid) {
+            this.tasksStore.updateTasks(3, taskid)
+        },
+        changestate2(taskid) {
+            this.tasksStore.updateTasks(1, taskid)
+        },
+        changestate3(taskid) {
+            this.tasksStore.updateTasks(2, taskid)
+        },
+        remove(task_id) {
             this.tasksStore.deleteTasks(task_id)
-            console.log('...')
         }
-      
+
     },
-    mounted(){
+    mounted() {
         this.tasksStore.fetchTasks()
     }
-} 
+}
 
 
 </script>
@@ -86,12 +99,17 @@ button {
 .addlist {
     flex-direction: column;
 }
-
-.ongoing {
+.todo{
+    background-color: brown;
+}
+.process {
     flex-direction: column;
+    background-color: aqua;
+
 }
 
 .done {
     flex-direction: column;
+    background-color: green;
 }
 </style>
