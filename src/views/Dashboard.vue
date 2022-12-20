@@ -5,29 +5,28 @@
             <input type="text" v-model="title" placeholder="Add new task" width="50px">
             <button @click="addtolist(1)" class="addbutton"> Add task</button>
         </div>
-        <div>
 
-            <div class="all">
+        <div class="all">
                
-                <div class="bg-stone-300">
-                    <h2> To do :)</h2>
-                    <taskItem v-for="(item) in tasksStore.pendingTasks" :item = "item" :column = "1" class="todo"/>
+            <div class="bg-stone-300">
+                <h2> To do :)</h2>
+                <taskItem v-for="(item) in tasksStore.pendingTasks" :item = "item" :column = "1" class="todo"/>
 
-                </div>
+            </div>
 
-                <div class="bg-stone-300  mt-3">
-                    <h2>On going...</h2>
-                    <taskItem v-for="(item) in tasksStore.ongoingTasks" :item = "item" :column = "2" class="todo"/>
+            <div class="bg-stone-300  mt-3">
+                <h2>On going...</h2>
+                <taskItem v-for="(item) in tasksStore.ongoingTasks" :item = "item" :column = "2" class="todo"/>
 
-                </div>
+            </div>
 
-                <div class="bg-stone-300  mt-3">
-                    <h2>Done!</h2>
-                    <taskItem v-for="(item) in tasksStore.doneTasks" :item = "item" :column = "3" class="todo"/>
+            <div class="bg-stone-300  mt-3">
+                <h2>Done!</h2>
+                <taskItem v-for="(item) in tasksStore.doneTasks" :item = "item" :column = "3" class="todo"/>
 
-                </div>
             </div>
         </div>
+
     </div>
 
 
