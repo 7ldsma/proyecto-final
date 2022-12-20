@@ -10,7 +10,6 @@
             <button @click="updateTitle(item)">Update</button>
         </div>
         
-        {{ item.status }}
     </div>
 
 </template>
