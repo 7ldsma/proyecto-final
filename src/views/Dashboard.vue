@@ -3,7 +3,7 @@
     <div>
         <div class="in">
             <input type="text" v-model="title" placeholder="Add new task" width="50px">
-            <button @click="addtolist()" class="addbutton"> Add task</button>
+            <button @click="addtolist(1)" class="addbutton"> Add task</button>
         </div>
         <div>
 
@@ -11,34 +11,19 @@
                
                 <div class="bg-stone-300">
                     <h2> To do :)</h2>
-                    <div v-for=" (item, index ) in tasksStore.tasks" class="todo">
-                        <div v-if="tasksStore.tasks[index].status == 1">
-                            {{ item.title }} <button @click="changestate(item.id)"> next</button>
-                            <button @click="remove(item.id)">Remove</button>
-                        </div>
-                    </div>
+                    <taskItem v-for="(item) in tasksStore.pendingTasks" :item = "item" :column = "1" class="todo"/>
 
                 </div>
 
                 <div class="bg-stone-300  mt-3">
                     <h2>On going...</h2>
-                    <div v-for=" (item, index ) in tasksStore.tasks" class="process">
-                        <div v-if="tasksStore.tasks[index].status == 2">
-                            {{ item.title }} <button @click="changestate1(item.id)"> next</button> <button
-                                @click="changestate2(item.id)">go back</button>
-                            <button @click="remove(item.id)">Remove</button>
-                        </div>
-                    </div>
+                    <taskItem v-for="(item) in tasksStore.ongoingTasks" :item = "item" :column = "2" class="todo"/>
+
                 </div>
 
                 <div class="bg-stone-300  mt-3">
                     <h2>Done!</h2>
-                    <div v-for=" (item, index ) in tasksStore.tasks" class="done">
-                        <div v-if="tasksStore.tasks[index].status == 3">
-                            {{ item.title }} <button @click="changestate3(item.id)">go back</button>
-                            <button @click="remove(item.id)">Remove</button>
-                        </div>
-                    </div>
+                    <taskItem v-for="(item) in tasksStore.doneTasks" :item = "item" :column = "3" class="todo"/>
 
                 </div>
             </div>
@@ -49,16 +34,23 @@
 
 </template>
 
-<script scoped>
+<script>
 import { mapStores } from 'pinia'
 import userStore from '../stores/user.js'
 import tasksStore from '../stores/task.js'
+import taskItem from '../components/TaskItem.vue'
+
 export default {
+    components :{
+        taskItem
+    },
 
     data() {
         return {
 
             title: "",
+            // newTitle: "",
+            // display: false,
             todo: true,
             process: false,
             done: false,
@@ -66,33 +58,15 @@ export default {
     },
 
     computed: {
-        ...mapStores(userStore),
-        ...mapStores(tasksStore),
+        ...mapStores(userStore, tasksStore),
     },
 
     methods: {
-        addtolist() {
-            this.tasksStore.createTasks(this.userStore.user.id, this.title, 1)
+        addtolist(status) {
+            this.tasksStore.createTasks(this.userStore.user.id, this.title, status)
             this.title = ""
         },
-        changestate(taskid) {
-            this.tasksStore.updateTasks(2, taskid)
-            this.todo = false
-            this.process = true
-        },
-        changestate1(taskid) {
-            this.tasksStore.updateTasks(3, taskid)
-        },
-        changestate2(taskid) {
-            this.tasksStore.updateTasks(1, taskid)
-        },
-        changestate3(taskid) {
-            this.tasksStore.updateTasks(2, taskid)
-        },
-        remove(task_id) {
-            this.tasksStore.deleteTasks(task_id)
-        }
-
+        
     },
     mounted() {
         this.tasksStore.fetchTasks()
