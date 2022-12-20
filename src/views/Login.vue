@@ -35,8 +35,8 @@ export default {
 
     methods: {
 
-        login (){
-            this.userStore.login(this.email, this.password)
+        async login (){
+           await this.userStore.login(this.email, this.password)
             this.$router.push('/dashboard')
         },
 
