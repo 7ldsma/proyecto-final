@@ -1,32 +1,33 @@
 <template>
 
-    <div>
-        <div class="in">
-            <input type="text" v-model="title" placeholder="Add new task" width="50px">
-            <button @click="addtolist(1)" class="addbutton"> Add task</button>
-        </div>
+    <div class="mx-40 my-16 flex flex-row flex-wrap justify-center">
 
-        <div class="all">
+        <div class="my-12 flex flex-row justify-center items-start gap-5">
                
-            <div class="bg-stone-300">
-                <h2> To do :)</h2>
-                <taskItem v-for="(item) in tasksStore.pendingTasks" :item = "item" :column = "1" class="todo"/>
+            <div class="w-80 p-5 bg-stone-300 rounded-md">
+                <h2 class="mb-4 pb-2 border-b font-bold">To do</h2>
+                <taskItem v-for="(item) in tasksStore.pendingTasks" :item = "item" :column = "1"/>
 
             </div>
 
-            <div class="bg-stone-300  mt-3">
-                <h2>On going...</h2>
-                <taskItem v-for="(item) in tasksStore.ongoingTasks" :item = "item" :column = "2" class="todo"/>
+            <div class="w-80 p-5 bg-stone-300 rounded-md">
+                <h2 class="mb-4 pb-2 border-b font-bold align-top">On going</h2>
+                <taskItem v-for="(item) in tasksStore.ongoingTasks" :item = "item" :column = "2"/>
 
             </div>
 
-            <div class="bg-stone-300  mt-3">
-                <h2>Done!</h2>
-                <taskItem v-for="(item) in tasksStore.doneTasks" :item = "item" :column = "3" class="todo"/>
+            <div class="w-80 p-5 bg-stone-300 rounded-md">
+                <h2 class="mb-4 pb-2 border-b font-bold">Done</h2>
+                <taskItem v-for="(item) in tasksStore.doneTasks" :item = "item" :column = "3"/>
 
             </div>
         </div>
 
+        <div class="mt-10">
+            <input class="mx-2 p-4 border-b" type="text" v-model="title" placeholder="Add new task" width="50px">
+            <button class="p-4 bg-[#285875] text-white font-bold rounded-md" @click="addtolist(1)">Add task</button>
+        </div>
+        
     </div>
 
 
@@ -75,55 +76,6 @@ export default {
 
 </script>
 
-<style scoped>
-h2 {
-    font-size: medium;
-}
+<style>
 
-button {
-    width: 70px;
-    height: 40px;
-    background-color: blue;
-}
-
-
-.all {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.todo {
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-    padding-bottom: 5%;
-
-
-}
-
-.process {
-    display: flex;
-    justify-items: center;
-    padding-bottom: 5%;
-
-
-}
-
-.done {
-    display: flex;
-    justify-items: end;
-    padding-bottom: 5%;
-
-
-}
-
-.in {
-    padding-bottom: 10%;
-}
-@media (min-width:1024px){
-.all{
-    flex-direction: row;
-}
-}
 </style>
