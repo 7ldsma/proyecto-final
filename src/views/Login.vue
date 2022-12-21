@@ -4,7 +4,7 @@
             <form class="flex-col" @submit.prevent="login">
                     <input class="w-full mt-5 px-8 py-6 border-b-2" type="text" v-model="email" placeholder="Email">
                     <input class="w-full my-5 px-8 py-6 border-b-2" type="password" v-model="password" placeholder="Password">
-                    <button class="w-full px-8 py-6 rounded-xl bg-[#285875] text-white" type="submit">Log-in</button>
+                    <button class="w-full px-8 py-6 rounded-xl bg-[#285875] text-white"  type="submit">Log-in</button>
             </form>
             
             <div class="pt-4 text-center">
@@ -41,7 +41,7 @@ export default {
 
         isLoggedin (){
             this.userStore.fetchUser
-        }
+        },
     }
 }
 
