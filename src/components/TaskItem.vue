@@ -1,16 +1,21 @@
 <template>
-    <div class="mb-4 px-3 rounded-md py-3 bg-slate-100 flex flex-row justify-between">
-        {{ item.title }} 
-        <div class="flex flex-row justify-end">
-            <button class="bg-[#285875] text-white w-6 rounded-full font-black align-middle" v-if="item.status != 1" @click="changestate(column - 1, item.id)"> &lt </button>
+    <div class="mb-4 px-3 rounded-md py-3 bg-slate-100 flex flex-col justify-between">
+        <div class="flex flex-row justify-between">
+        <div>
+            {{ item.title }}
+        </div>
+        <div class=" space-x-1">
+            <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 1" @click="changestate(column - 1, item.id)"> &lt </button>
             <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 3" @click="changestate(column + 1, item.id)"> > </button>
             <button class="bg-[#285875] text-white w-6 rounded-full font-bold" @click="remove(item.id)">X</button>
-            <button @click="editTask()">Edit</button> 
-            <div  v-if="display">
-                <input v-model="newTitle" type="text">
-                <button @click="updateTitle(item)">Update</button>
-            </div>
-        </div>        
+            <button class="bg-[#285875] text-white w-10 font-semibold rounded-md" @click="editTask()">Edit</button>
+        </div>
+            
+        </div>   
+        <div  v-if="display" class="mt-2 flex justify-between ">
+                <input class="w-3/5 px-3 py-1 border" v-model="newTitle" placeholder="Type here..." type="text">
+                <button class="bg-[#285875] text-white w-1/4 font-semibold rounded-md" @click="updateTitle(item)">Update</button>
+            </div>     
     </div>
 
 </template>
@@ -65,7 +70,8 @@ import tasksStore from '../stores/task.js'
         updateTitle(item) {
             item.title = this.newTitle,
             this.tasksStore.updateTask(this.newTitle, this.item.id)
-            this.display = false     
+            this.display = false  
+            this.newTitle=""   
 
         }
     }
