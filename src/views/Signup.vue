@@ -34,7 +34,7 @@ export default {
     methods: {
         register (){
            
-            if (this.valid.test(this.email) && this.password.length> 7 && this.name.length>1)
+            if (this.valid.test(this.email) && this.password.length>= 7 && this.name.length>1)
             {
                 window.alert ("Thanks for signing up! Log-in and start creating your tasks")
                 this.userStore.signUp(this.name, this.email, this.password)
