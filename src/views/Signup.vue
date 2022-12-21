@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full px-8 flex justify-center content-center">
+    <div class="md:m-40 h-full mt-44 px-8 flex justify-center content-center">
         <div class="max-w-lg">
             <form class="flex-col" @submit.prevent="register">
                 <input class="w-full mt-5 px-8 py-6 border-b-2" type="text" v-model="name" placeholder="Nombre">
