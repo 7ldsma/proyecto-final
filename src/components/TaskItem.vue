@@ -1,15 +1,16 @@
 <template>
-    <div>
+    <div class="mb-4 px-3 rounded-md py-3 bg-slate-100 flex flex-row justify-between">
         {{ item.title }} 
-        <button v-if="item.status != 3" @click="changestate(column + 1, item.id)">Next</button>
-        <button v-if="item.status != 1" @click="changestate(column - 1, item.id)">Back</button>
-        <button @click="remove(item.id)">Remove</button>
-        <button @click="editTask()">Edit</button> 
-        <div v-if="display">
-            <input v-model="newTitle" type="text">
-            <button @click="updateTitle(item)">Update</button>
-        </div>
-        
+        <div class="flex flex-row justify-end">
+            <button class="bg-[#285875] text-white w-6 rounded-full font-black align-middle" v-if="item.status != 1" @click="changestate(column - 1, item.id)"> &lt </button>
+            <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 3" @click="changestate(column + 1, item.id)"> > </button>
+            <button class="bg-[#285875] text-white w-6 rounded-full font-bold" @click="remove(item.id)">X</button>
+            <button @click="editTask()">Edit</button> 
+            <div  v-if="display">
+                <input v-model="newTitle" type="text">
+                <button @click="updateTitle(item)">Update</button>
+            </div>
+        </div>        
     </div>
 
 </template>
@@ -27,9 +28,7 @@ import tasksStore from '../stores/task.js'
             title: "",
             newTitle: "",
             display: false,
-            todo: true,
-            process: false,
-            done: false,
+
         }
         },
 
@@ -75,54 +74,5 @@ import tasksStore from '../stores/task.js'
 </script>
 
 <style scoped>
-h2 {
-    font-size: medium;
-}
 
-button {
-    width: 70px;
-    height: 40px;
-    background-color: blue;
-}
-
-
-.all {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.todo {
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-    padding-bottom: 5%;
-
-
-}
-
-.process {
-    display: flex;
-    justify-items: center;
-    padding-bottom: 5%;
-
-
-}
-
-.done {
-    display: flex;
-    justify-items: end;
-    padding-bottom: 5%;
-
-
-}
-
-.in {
-    padding-bottom: 10%;
-}
-@media (min-width:1024px){
-.all{
-    flex-direction: row;
-}
-}
 </style>
