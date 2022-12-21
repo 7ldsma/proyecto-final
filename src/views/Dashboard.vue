@@ -23,8 +23,8 @@
             </div>
         </div>
 
-        <div class="mt-10 flex flex-col">
-            <input class="mx-2 p-4 border-b" type="text" v-model="title" placeholder="Add new task" width="50px">
+        <div class="mt-10 ">
+            <input class="mx-2 p-4 border-b w-3/5 ring-2 ring-neutral-400" type="text" v-model="title" placeholder="Add new task" width="50px">
             <button class="p-4 bg-[#285875] text-white font-bold rounded-md" @click="addtolist(1)">Add task</button>
         </div>
         
