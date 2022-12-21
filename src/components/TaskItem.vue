@@ -8,13 +8,13 @@
             <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 1" @click="changestate(column - 1, item.id)"> &lt </button>
             <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 3" @click="changestate(column + 1, item.id)"> > </button>
             <button class="bg-[#285875] text-white w-6 rounded-full font-bold" @click="remove(item.id)">X</button>
-            <button class="bg-[#285875] text-white w-10 font-black " @click="editTask()">Edit</button>
+            <button class="bg-[#285875] text-white w-10 font-semibold rounded-md" @click="editTask()">Edit</button>
         </div>
             
         </div>   
         <div  v-if="display" class="mt-2 flex justify-between ">
-                <input v-model="newTitle" placeholder="Type here..." type="text" class="w-3/5 ring-2 ring-neutral-400">
-                <button class="bg-[#285875] text-white w-1/4 font-black rounded-sm" @click="updateTitle(item)">Update</button>
+                <input class="w-3/5 px-3 py-1 border" v-model="newTitle" placeholder="Type here..." type="text">
+                <button class="bg-[#285875] text-white w-1/4 font-semibold rounded-md" @click="updateTitle(item)">Update</button>
             </div>     
     </div>
 

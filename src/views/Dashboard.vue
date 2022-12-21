@@ -1,8 +1,8 @@
 <template>
 
-    <div class="md:mx-40 mx-8 md:my-16 flex flex-row flex-wrap justify-center overflow-auto relative">
+    <div class="md:mx-40 mx-8 md:my-16 flex flex-row flex-wrap justify-center relative">
 
-        <div class="my-12 flex md:flex-row flex-col md:justify-center justify-start items-start gap-5 snap-x snap-mandatory">
+        <div class="mb-40 md:mb-20 flex md:flex-row flex-col md:justify-center overscroll-contain justify-start items-start gap-5">
                
             <div class="w-80 p-5 bg-stone-300 rounded-md">
                 <h2 class="mb-4 pb-2 border-b font-bold">To do</h2>
@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="mt-10 flex md:flex-row flex-col fixed botton-6">
+        <div class="mt-10 flex bg-white w-full px-8 pb-8 flex-col  fixed bottom-0 md:flex-row md:relative md:justify-center md:bottom-30">
             <input class="mx-2 my-2 p-4 border-b rounded-md w-3/5 w-auto" type="text" v-model="title" placeholder="Add new task" width="50px">
             <button class="p-4 bg-[#285875] text-white font-bold rounded-md" @click="addtolist(1)">Add task</button>
         </div>
