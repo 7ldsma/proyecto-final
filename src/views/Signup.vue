@@ -12,7 +12,6 @@
 </template>
 
 <script>
-//import SignUp from '../components/Signup.vue'
 import {mapStores} from 'pinia'
 import userStore from '../stores/user.js'
 
@@ -34,6 +33,7 @@ export default {
     methods: {
         register (){
             this.userStore.signUp(this.name, this.email, this.password)
+            alert ("Thanks for signing up! Log-in and start creating your tasks")
             this.$router.push("/")
         },
     }
