@@ -8,6 +8,7 @@
                         <button class="w-full px-8 py-6 rounded-xl bg-[#285875] text-white" type="submit">Log-in</button>
                 </form>
             </div>
+
             <div class="pt-4 text-center">
                 ¿Dont have an account? <br>
                 <router-link class="text-[#285875] font-bold" to="/signup">Create one here</router-link>
@@ -42,7 +43,7 @@ export default {
 
         isLoggedin (){
             this.userStore.fetchUser
-        }
+        },
     }
 }
 
