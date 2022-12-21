@@ -6,11 +6,11 @@
             <button class="bg-[#285875] text-white w-6 rounded-full font-black" v-if="item.status != 3" @click="changestate(column + 1, item.id)"> > </button>
             <button class="bg-[#285875] text-white w-6 rounded-full font-bold" @click="remove(item.id)">X</button>
             <button @click="editTask()">Edit</button> 
-            <div  v-if="display">
+        </div>  
+        <div class="flex flex-col" v-if="display">
                 <input v-model="newTitle" type="text">
                 <button @click="updateTitle(item)">Update</button>
-            </div>
-        </div>        
+        </div>      
     </div>
 
 </template>
